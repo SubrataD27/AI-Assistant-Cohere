@@ -1,5 +1,5 @@
 # AI Chatbot Using Cohere API
-
+## By Subrata Dhibar
 Welcome to the AI Chatbot project! This chatbot leverages Cohere's Natural Language Processing (NLP) capabilities to create an intelligent conversational interface. The project is designed for simplicity, extensibility, and ease of integration into various applications.
 
 ---
@@ -90,45 +90,6 @@ The main entry point of the chatbot:
       )
       return jsonify({'response': response.generations[0].text.strip()})
   ```
-
-### `templates/index.html`
-
-A simple web interface for interacting with the chatbot:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chatbot</title>
-</head>
-<body>
-    <h1>Welcome to the AI Chatbot</h1>
-    <form id="chatForm">
-        <input type="text" id="userInput" placeholder="Type your message here" />
-        <button type="submit">Send</button>
-    </form>
-    <div id="chatOutput"></div>
-
-    <script>
-        document.getElementById('chatForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const message = document.getElementById('userInput').value;
-            const response = await fetch('/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message }),
-            });
-            const data = await response.json();
-            document.getElementById('chatOutput').innerText = data.response;
-        });
-    </script>
-</body>
-</html>
-```
 
 ---
 
