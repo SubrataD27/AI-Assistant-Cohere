@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROP DOCTOR</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --light-bg: #f9f9f9;
+            --light-container: #ffffff;
+            --dark-bg: #1a1a1a;
+            --dark-container: #2d2d2d;
+            --dark-chat: #363636;
+            --accent-green: #4CAF50;
+            --accent-blue: #2196F3;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+        }
+
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            max-width: 800px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            background-color: var(--light-container);
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            color: var(--accent-green);
+            margin-bottom: 30px;
+            font-weight: 800;
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #chat-output {
+            border-radius: 15px;
+            padding: 20px;
+            height: 450px;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.03);
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            margin: 15px 0;
+            padding: 12px 20px;
+            border-radius: 15px;
+            max-width: 85%;
+            word-wrap: break-word;
+            position: relative;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .user-message {
+            background-color: var(--accent-green);
+            color: white;
+            margin-left: auto;
+            border-radius: 15px 15px 0 15px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .bot-message {
+            background-color: var(--accent-blue);
+            color: white;
+            margin-right: auto;
+            border-radius: 15px 15px 15px 0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-message {
+            background-color: #ff4444;
+            color: white;
+            margin-right: auto;
+            border-radius: 15px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .loading-indicator {
+            display: none;
+            text-align: center;
+            padding: 10px;
+            color: var(--accent-blue);
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        #user-input {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 25px;
+            border: 2px solid #e0e0e0;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #user-input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        .send-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--accent-green);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .send-button:hover {
+            background-color: #45a049;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .send-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .control-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .quick-reply {
+            background-color: transparent;
+            border: 2px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .quick-reply:hover {
+            background-color: var(--accent-green);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: #666;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+        }
+
+        .dark-mode .container {
+            background-color: var(--dark-container);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode h1 {
+            color: #ffffff;
+        }
+
+        .dark-mode #chat-output {
+            background-color: var(--dark-chat);
+        }
+
+        .dark-mode #user-input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #444;
+            color: #ffffff;
+        }
+
+        .dark-mode #user-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .dark-mode .control-btn {
+            background-color: var(--dark-chat);
+            color: #ffffff;
+        }
+
+        .dark-mode .quick-reply {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .dark-mode .footer {
+            border-top-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 10px;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .control-buttons {
+                flex-direction: column;
+            }
+
+            .quick-replies {
+                flex-direction: column;
+            }
+
+            .quick-reply {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CROP DOCTOR</h1>
+        
+        <div id="chat-output"></div>
+
+        <div id="loading" class="loading-indicator">
+            <i class="fas fa-spinner fa-spin"></i> Processing...
+        </div>
+
+        <form id="chat-form">
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type your message..." required>
+                <button type="submit" class="send-button" id="send-button">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+
+        <div class="control-buttons">
+            <button id="show-history" class="control-btn">CHAT HISTORY</button>
+            <button id="toggle-theme" class="control-btn">SWITCH TO DARK</button>
+        </div>
+
+        <div class="quick-replies">
+            <button class="quick-reply">Pest Control</button>
+            <button class="quick-reply">Disease Treatment</button>
+            <button class="quick-reply">Crop Care Tips</button>
+            <button class="quick-reply">Soil Health</button>
+            <button class="quick-reply">Irrigation Help</button>
+        </div>
+
+        <div class="footer">
+            Made with <i class="fas fa-heart" style="color: #ff4444;"></i> by Subrata Annandita and Raja
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('chat-form');
+        const outputDiv = document.getElementById('chat-output');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const loadingIndicator = document.getElementById('loading');
+        let chatHistory = [];
+
+        function createMessageElement(sender, text, isUser, isError = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isError ? 'error-message' : isUser ? 'user-message' : 'bot-message'}`;
+            
+            const senderSpan = document.createElement('strong');
+            senderSpan.textContent = sender + ': ';
+            
+            const messageText = document.createElement('span');
+            messageText.textContent = text;
+            
+            messageDiv.appendChild(senderSpan);
+            messageDiv.appendChild(messageText);
+            
+            return messageDiv;
+        }
+
+        function addMessageToChat(sender, text, isUser, isError = false) {
+            const messageElement = createMessageElement(sender, text, isUser, isError);
+            outputDiv.appendChild(messageElement);
+            outputDiv.scrollTop = outputDiv.scrollHeight;
+            if (!isError) {
+                chatHistory.push({ sender, message: text });
+            }
+        }
+
+        async function sendMessage(message) {
+            try {
+                loadingIndicator.style.display = 'block';
+                sendButton.disabled = true;
+                userInput.disabled = true;
+
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `user_input=${encodeURIComponent(message)}`
+                });
+
+                const data = await response.json();
+                
+                if (data.status === 'success' || data.status === 'info') {
+                    addMessageToChat('Bot', data.message, false);
+                } else {
+                    addMessageToChat('Bot', data.message || 'Sorry, I encountered an error. Please try again.', false, true);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessageToChat('Bot', 'Sorry, I encountered an error. Please try again.', false, true);
+            } finally {
+                loadingIndicator.style.display = 'none';
+                sendButton.disabled = false;
+                userInput.disabled = false;
+                userInput.focus();
+            }
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            addMessageToChat('You', message, true);
+            userInput.value = '';
+            await sendMessage(message);
+        });
+
+        document.querySelectorAll('.quick-reply').forEach(button => {
+            button.addEventListener('click', async () => {
+                const message = button.textContent;
+                addMessageToChat('You', message, true);
+                await sendMessage(message);
+            });
+        });
+
+        document.getElementById('show-history').addEventListener('click', () => {
+            if (chatHistory.length === 0) {
+                addMessageToChat('Bot', 'No chat history available.', false);
+                return;
+            }
+
+            const historyMessage = chatHistory
+                .map(entry => `${entry.sender}: ${entry.message}`)
+                .join('\n');
+            addMessageToChat('Bot', 'Chat History:\n' + historyMessage, false);
+        });
+
+        document.getElementById('toggle-theme').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            document.getElementById('toggle-theme').textContent = 
+                isDarkMode ? "SWITCH TO LIGHT" : "SWITCH TO DARK";
+        });
+
+        // Initialize with welcome message
+        window.addEventListener('load', () => {
+            addMessageToChat('Bot', 'Welcome to Crop Doctor! I can help you with pest control, disease treatment, crop care tips, soil health, and irrigation advice. How can I assist you today?', false);
+        });
+
+        // Keep input field focused
+        userInput.focus();
+        userInput.addEventListener('blur', () => {
+            setTimeout(() => userInput.focus(), 100);
+        });
+
+        // Handle errors gracefully
+        window.addEventListener('error', (event) => {
+            console.error('Error:', event.error);
+            addMessageToChat('Bot', 'An unexpected error occurred. Please try again.', false, true);
+        });
+    </script>
+</body>
+</html>

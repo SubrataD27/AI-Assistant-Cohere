@@ -1,0 +1,181 @@
+2024-11-15 03:42:39,413 - werkzeug - INFO - 127.0.0.1 - - [15/Nov/2024 03:42:39] "GET / HTTP/1.1" 200 -
+2024-11-15 03:42:50,816 - httpx - INFO - HTTP Request: POST https://api.cohere.com/v1/generate "HTTP/1.1 401 Unauthorized"
+2024-11-15 03:42:50,817 - app - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 55, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 156, in chat
+    response = get_cohere_response(user_input)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 117, in get_cohere_response
+    response = co.generate(
+               ^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\cohere\base_client.py", line 1664, in generate
+    raise UnauthorizedError(
+cohere.errors.unauthorized_error.UnauthorizedError: status_code: 401, body: {'message': 'invalid api token'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 56, in decorated_function
+    except cohere.CohereError as e:
+           ^^^^^^^^^^^^^^^^^^
+AttributeError: module 'cohere' has no attribute 'CohereError'
+2024-11-15 03:42:50,821 - werkzeug - INFO - 127.0.0.1 - - [15/Nov/2024 03:42:50] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-11-15 03:51:00,118 - werkzeug - INFO - 127.0.0.1 - - [15/Nov/2024 03:51:00] "GET / HTTP/1.1" 200 -
+2024-11-15 03:51:07,591 - httpx - INFO - HTTP Request: POST https://api.cohere.com/v1/generate "HTTP/1.1 401 Unauthorized"
+2024-11-15 03:51:07,591 - app - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 55, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 156, in chat
+    response = get_cohere_response(user_input)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 117, in get_cohere_response
+    response = co.generate(
+               ^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\cohere\base_client.py", line 1664, in generate
+    raise UnauthorizedError(
+cohere.errors.unauthorized_error.UnauthorizedError: status_code: 401, body: {'message': 'invalid api token'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 56, in decorated_function
+    except cohere.CohereError as e:
+           ^^^^^^^^^^^^^^^^^^
+AttributeError: module 'cohere' has no attribute 'CohereError'
+2024-11-15 03:51:07,594 - werkzeug - INFO - 127.0.0.1 - - [15/Nov/2024 03:51:07] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-11-15 03:51:13,739 - werkzeug - INFO - 127.0.0.1 - - [15/Nov/2024 03:51:13] "GET / HTTP/1.1" 200 -
+2024-11-15 03:51:19,147 - httpx - INFO - HTTP Request: POST https://api.cohere.com/v1/generate "HTTP/1.1 401 Unauthorized"
+2024-11-15 03:51:19,147 - app - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 55, in decorated_function
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 156, in chat
+    response = get_cohere_response(user_input)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 117, in get_cohere_response
+    response = co.generate(
+               ^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\cohere\base_client.py", line 1664, in generate
+    raise UnauthorizedError(
+cohere.errors.unauthorized_error.UnauthorizedError: status_code: 401, body: {'message': 'invalid api token'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 56, in decorated_function
+    except cohere.CohereError as e:
+           ^^^^^^^^^^^^^^^^^^
+AttributeError: module 'cohere' has no attribute 'CohereError'
+2024-11-15 03:51:19,150 - werkzeug - INFO - 127.0.0.1 - - [15/Nov/2024 03:51:19] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-11-15 03:57:25,214 - werkzeug - INFO - 127.0.0.1 - - [15/Nov/2024 03:57:25] "GET / HTTP/1.1" 200 -
+2024-11-15 03:57:32,491 - httpx - INFO - HTTP Request: POST https://api.cohere.com/v1/generate "HTTP/1.1 401 Unauthorized"
+2024-11-15 03:57:32,492 - app - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 55, in decorated_function
+    #             return f(*args, **kwargs)
+                       ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 156, in chat
+    #     response = get_cohere_response(user_input)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 117, in get_cohere_response
+    #     response = co.generate(
+                   ^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\cohere\base_client.py", line 1664, in generate
+    raise UnauthorizedError(
+cohere.errors.unauthorized_error.UnauthorizedError: status_code: 401, body: {'message': 'invalid api token'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\envs\test\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhiba\OneDrive\Desktop\All DOC\chatbotzz\app.py", line 56, in decorated_function
+    #         except cohere.CohereError as e:
+                   ^^^^^^^^^^^^^^^^^^
+AttributeError: module 'cohere' has no attribute 'CohereError'
+2024-11-15 03:57:32,506 - werkzeug - INFO - 127.0.0.1 - - [15/Nov/2024 03:57:32] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-11-15 08:54:19,730 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-15 08:54:19,731 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-15 08:54:23,452 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-15 08:54:23,452 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-15 08:54:59,685 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-15 08:54:59,685 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-15 08:56:12,335 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-15 08:56:12,336 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-15 08:56:32,769 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-15 08:56:32,769 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-15 09:02:35,725 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-15 09:02:35,725 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-15 09:07:56,331 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-15 09:07:56,331 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-15 09:12:22,958 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-15 09:12:22,958 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-15 09:14:45,696 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-15 09:14:45,697 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-15 09:15:07,674 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-15 09:15:07,674 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-09 01:50:34,905 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-09 01:50:34,905 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
